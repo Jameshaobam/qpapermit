@@ -132,6 +132,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT =  os.path.join(BASE_DIR,'static')
 
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
@@ -142,3 +143,9 @@ cloudinary.config(
   api_key = "536141892299187",
   api_secret = "5J5uRCUBMgnwCjk66d4aAbcSsB0"
 )
+
+try:
+    from .local_settings import *
+
+except ImportError:
+    print("You are no production mode!")
