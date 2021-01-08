@@ -28,4 +28,11 @@ subject_choices = {
     "Physics":"Physics",
     "Chemistry":"Chemistry",
     "Computer Science":"Computer Science",
+    "BEEE":"BEEE",
+    "ME":"Mechanical",
+    "PC":"Professional communication",
+    "FEE":"Fundamental of earthquake engg",
+    "Engg Graphics":"Engg Graphics",
+    "Technical Eng":"Technical Eng",
+    "Engg eco":"Engg economics",
 }
