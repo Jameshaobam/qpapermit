@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
+    <meta name="description" content = "This website allows students of Manipur Institute of Technology to share previous years Questions and Answers online">
+    <meta name="keywords" content="Manipur Institute of Technology, Previous year Questions and Answers,Question paper,Answers,College,Students">
+    <meta name="author" content="James Haobam">
+    {% block meta %}
+
+    {% endblock %}
+    <title>Qpaper-{% block title %}{% endblock %}</title>
+   <link rel="shortcut icon" href="{% static 'images/favlogo.png'%}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block style%}
+    {% endblock %}
+</head>
+<body>
+  <div class="preload">
+    <div class="loading">
+  
+    </div>
+  </div>
+  
+<!-- -------------------------header---------------------------- -->
+<header>
+  <div class="header-container">
+    <div class="logo-container">
+      <a href="{% url 'home:home' %}"><img src="{% static 'images/logo.png' %}" alt="logo for qpaper mit "></a>
+     
+    </div>
+    <nav class="navbar">
+      <ul class="items">
+        <li class="item"><a href="{% url 'home:home' %}">Home</a></li>
+        {% if user.is_authenticated %}
+        <li class="item"><a href="{% url 'home:upload' %}">Upload</a></li>
+        <form class="lg-form" method="post" action="{% url 'account:logout_user' %}">
+          {% csrf_token %}
+          <input class="item log-lg" type="submit" value="Logout">
+      </form>
+        
+
+        {% else %}
+        <li class="item"><a href="{% url 'account:signin_user' %}">Login</a></li>
+        <li class="item"><a href="{% url 'account:signup_user' %}">Register</a></li>
+        {% endif %}
+        
+        
+        
+        <li class="item"><a href="{% url 'home:aboutpage' %}">About</a></li>
+        <li class="item"><a href="{% url 'home:contactme' %}">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- ---------------Only activate when humberger menu is clicked-------------------------------- -->
+    
+    <nav class="nav-small">
+      <ul class="links">
+        <li class="link"><a href="{% url 'home:home' %}">Home</a></li>
+        {% if user.is_authenticated %}
+        <li class="link"><a href="{% url 'home:upload' %}">Upload</a></li>
+        <form method="post" action="{% url 'account:logout_user' %}">
+          {% csrf_token %}
+          <input class="link logout" type="submit" value="Logout">
+      </form>
+        
+
+        {% else %}
+        <li class="link login"><a href="{% url 'account:signin_user' %}">Login</a></li>
+        <li class="link register"><a href="{% url 'account:signup_user' %}">Register</a></li>
+        {% endif %}
+        
+        
+        
+        <li class="link"><a href="{% url 'home:aboutpage' %}">About</a></li>
+        <li class="link"><a href="{% url 'home:contactme' %}">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="menu">
+      <img class="menu-logo" src="{% static 'images/greenmenu.png' %}" alt="menu-icon">
+    </div>
+  <!-- ---------------------XXXXXX--------------------------- -->
+
+  </div>
+
+</header>
+  
+<section class="welcome">
+    
+  {% if user.is_authenticated %}
+  <h3>Welcome!<span> {{user.username}}</span></h3>
+    {% if user.first_name and  user.last_name %}
+    <p>Full name: {{user.first_name}} {{user.last_name}}</p>
+    {% else %}
+    <p>Full name: No full name registered</p> 
+    {% endif %}
+  <!-- <p>User id: {{user.id}}</p> -->
+
+  {% else %}
+  <h1>Login to share Questions and Answers</h1>
+  {% endif %}
+ 
+
+</section>
+
+   <hr>
+   {% block search %}
+   
+   {% endblock %}
+   {% block content %}
+   
+   {% endblock %}
+</div>
+   
+
+
+
+
+
+
+<section id="footer">
+<footer>
+  <p>Copyright &copy 2020-2021</p> 
+</footer>
+</section>
+{% block script %}
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock %}
+<script>
+  const overlay = document.querySelector('.preload');
+  window.addEventListener('load', () => {
+    overlay.style.display = 'none';
+  });
+
+</script>
+
+</body>
+</html>

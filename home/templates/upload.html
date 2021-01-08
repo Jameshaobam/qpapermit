@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}upload questions{% endblock %}
+
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/update-post.css' %}">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- -----msg----- -->
+
+<div class="messages">
+  <!-- <h3>Message here</h3> -->
+  <div class="mssg">
+    {% if messages %}
+    <script>
+      const msg = document.querySelector('.messages');
+       msg.style.display = 'flex'
+    </script>
+     {% for messages in messages %}
+         <p>{{messages}}</p>
+     {% endfor %} 
+  {% endif %}
+  {% if error %}
+  <script>
+    const msg = document.querySelector('.messages');
+     msg.style.display = 'flex'
+  </script>
+     <p>{{error}}</p>
+  {% endif %}
+
+  </div>
+  <div class="close">
+    <h5>&#10062</h5>
+  </div>
+
+</div>
+<!-- --------------- -->
+
+<section id="upload">
+  <div class="update-container">
+    <h2>Upload Quetions here</h2>
+    {% load cloudinary %}
+    <form class="" action="{% url 'home:upload' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+
+    <div class="row-update">
+      <div class="col">
+        
+        <div class="col">
+          <label for="">Semester</label>
+          <select class="" name="sem" required>
+              <option selected="true" disabled="true"> SEMESTER</option>
+                {% for key,value in sems.items %}
+                    <option value='{{key}}'>{{value}}</option>
+              {% endfor %}
+        
+          </select>
+          
+        </div>
+        <div class="col">
+  
+          <label for="">EXAM</label>
+          <select class="" name="exm" required>
+            <option selected="true" disabled="true"> EXAM</option>
+              {% for key,value in exm.items %}
+                  <option value='{{key}}'>{{value}}</option>
+            {% endfor %}
+        
+          </select>
+        </div>
+        <div class="col">
+          <label for="">Trade</label>
+          <select class="" name="trade" required>
+            <option selected="true" disabled="true" > TRADE</option>
+                {% for key,value in trades.items %}
+                    <option value='{{key}}'>{{value}}</option>
+              {% endfor %}
+        
+          </select>
+        </div>
+        <div class="col">
+          <label>Year:</label>
+   <select name = "year_sec" required>
+       <option selected = "true" disabled = "true">Year</option>
+
+       {% for i in yr %}
+       <option value="{{i.value}}">{{i.year}}</option>
+       {% endfor %}
+  </select>
+        </div>
+        <div class="col">
+          
+       <label for="">Subject</label>
+       <select class="" name="sub_sec" required>
+           <option selected="true" disabled="true"> Subject</option>
+           {% for key,value in subject.items %}
+               <option value='{{key}}'>{{value}}</option>
+         {% endfor %}
+     
+       </select>
+        </div>
+        <div class="col">
+          <p>Choose only image (jpeg/png/pdf)</p>
+          <input type="file" name="up" required>
+        </div>
+        <div class="col btn-container">
+          
+   {% if request.user.is_authenticated %}
+   <button class="btn" type="submit" name="upload">Upload</button>
+     {% else %}
+      Login first to upload files
+     {% endif %}
+        </div>
+      </div>
+    </div>
+    </form>
+  </div>
+</section>
+  
+{% endblock %}
+

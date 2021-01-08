@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+About us
+{% endblock %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<section id="about">
+    <div class="about-hero">
+        <h3>You are looking at the about page of this web application</h3>
+        <div class="about-info">
+            <br>
+          <p>This website was created by  <a href="{% url 'home:contactme' %}">me</a> to solve the problems of difficulties in searching of previous questions and answers </p>
+          <p>This website is mainly for the students of Manipur Institute and technology,Imphal</p>
+          <p>There is nothing special in this website but at least i think this will help us in some of the difficulties we faced in searching of QnA of the previous exam</p>
+          <br>
+          <p>You can upload in image(png/jpeg) or pdf file format only</p>
+          <br>
+          <p>Please don not upload any big size file in case you want to upload please lower down the quality <br>
+            do not upload any unrelated things if you do it will be delete within 24 hrs
+        </p>
+        <p>At last please support my Qpaper webiste for MIT</p>
+
+
+        </div>
+        <div class="instruction">
+            <h1>Instruction</h1>
+            <ul>
+                <li>Register and Login </li>
+                <li>Upload the question papers</li>
+                <li>Go to the uploaded Question paper and add ans image/pdf to those Qs</li>
+                <li>You can delete or update QnA images/pdf file </li>
+                <li>Bookmark this webiste so that it will be easy to find when you need Qpaper</li>
+            </ul>
+        </div>
+    </div>
+
+
+</section>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}
+Register user
+{% endblock %}
+{% load static%}
+
+{% block style%}
+
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+{% endblock %}
+{% block content %}
+  {% if request.user.is_authenticated %}
+  <h3>You need to log out to register new account</h3>
+{% else %}
+
+
+<div class="form-container">
+<h3>Register user here</h3>
+  <form method="post" action="{% url 'account:signup_user' %}">
+    <div class="form-hero">
+      {% csrf_token %}
+      <div class="col">
+        
+        <input type="text" name="username" required placeholder="Username" autocomplete="off">
+      </div>
+  <div class="col">
+    <!-- <label for="">First name:</label> -->
+    <input type="text" name="firstname" required placeholder="First name" autocomplete="off">
+  </div>
+  <div class="col">
+    <!-- <label for="">Last name:</label> -->
+    <input  type="text" name="lastname" required placeholder="Last name" autocomplete="off">
+  </div>
+  <div class="col"> 
+    <!-- <label for="">Email:</label> -->
+    <input type="email" name="email" required placeholder="Email" autocomplete="off">
+  </div>
+  <div class="col">
+  
+    <!-- <label for="">Password:</label> -->
+    <input  type="password" name="password1" required placeholder="Password" autocomplete="off">
+  </div>
+  <div class="col">
+    <!-- <label for="">Retype password:</label> -->
+    <input  type="password" name="password2" required placeholder="confirm password" autocomplete="off">
+  </div>
+  <div class="col login">
+    <p>Already have an account?<a href="{% url 'account:signin_user' %}">Login here</a></p>
+  </div>
+  <div class="col btn-container">
+  
+    <button class="btn" type="submit">Create </button>
+  </div>
+    </div>
+   
+
+</form>
+</div>
+
+{% endif %}
+
+<div class="msg">
+  {% if messages %}
+  {% for msg in messages %}
+
+   <h3>{{msg}}</h3>
+  {% endfor %}
+{% endif %}
+</div>
+
+{% endblock %}
+
+
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

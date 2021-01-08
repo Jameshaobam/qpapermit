@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% block meta %}
+<meta name="description" content="This shows all the previous year Questions in one place">
+<meta name="keywords" name="MIT previous year Questions">
+{% endblock %}
+ {% block title %}Home-all{% endblock %}
+  {% load static%} 
+  {% block style%}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+
+{% endblock %} 
+{% block search %}
+
+
+<div class="messages">
+  <!-- <h3>Message here</h3> -->
+  <div class="mssg">
+    {% if messages %}
+    <script>
+      const msg = document.querySelector('.messages');
+       msg.style.display = 'flex'
+    </script>
+     {% for messages in messages %}
+         <p>{{messages}}</p>
+     {% endfor %} 
+  {% endif %}
+  {% if error %}
+  <script>
+    const msg = document.querySelector('.messages');
+     msg.style.display = 'flex'
+  </script>
+     <p>{{error}}</p>
+  {% endif %}
+
+  </div>
+  <div class="close">
+    <h5>&#10062</h5>
+  </div>
+
+</div>
+
+<section id="search">
+  <div class="search-container">
+    <h2>Search here</h2>
+
+    <form class="" action="{% url 'home:search' %}" method="get">
+      <div class="row-search">
+        <div class="col">
+          <label for="">Trade</label>
+          <select class="" name="trade_sec">
+            <option selected="true" disabled="true">TRADE</option>
+            {% for key,value in trades.items %}
+            <option value="{{key}}">{{value}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col">
+          <label for="">Semester</label>
+          <select class="" name="sem_sec">
+            <option selected="true" disabled="true">SEMESTER</option>
+            {% for key,value in sems.items %}
+            <option value="{{key}}">{{value}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col">
+          <label for="">Exam</label>
+          <select class="" name="exm">
+            <option selected="true" disabled="true">EXAM</option>
+            {% for key,value in exm.items %}
+            <option value="{{key}}">{{value}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col">
+          <label for="">Year</label>
+          <select class="" name="year_sec">
+            <option selected="true" disabled="true">Year</option>
+            {% for item in yr %}
+            <option value="{{item.value}}">{{item.year}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col">
+          <label for="">Subject</label>
+          <select class="" name="sub_sec">
+            <option selected="true" disabled="true">Subject</option>
+            {% for key,value in subject.items %}
+            <option value="{{key}}">{{value}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="search-btn-container">
+          <input type="submit" name="" value="Search" class="btn" />
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<hr />
+
+
+
+{% endblock %} 
+
+
+{% block content %} 
+
+ <section id="files">
+
+  <div class="files-container">
+<!-- -----------card-container------------ -->
+ {% if fiels %}
+ {% for i in fiels %}
+ <a class="detail-link" href="{% url 'home:detail' i.id %}">
+     <div class="card-container">
+     
+       <div class="card-body">
+           <ul>
+             <h3>{{i.subject}}</h3>
+             <li>semester: {{i.semester}}</li>
+             <li>trade: {{i.trade}}</li>
+             <li>year: {{i.year_of_exm}}</li>
+             <li>exam: {{i.exam}}</li>
+           </ul>
+       </div>
+       <div class="card-download">
+              <a class="card-btn" href="{{i.file.url}}" target="_blank">Download file</a>
+       </div>
+       
+     </div>
+    </a>
+     {% endfor %}
+  {% else %}
+  <div class="no-files">
+    <h3>No files yet!!! You can upload or let your friends upload</h3>
+  </div>
+
+  {% endif %}
+<!-- -----------card-container------------ -->
+
+
+  </div>
+
+ </section>
+
+
+{% endblock %}
+

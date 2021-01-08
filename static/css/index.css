@@ -1,0 +1,255 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+.row-search{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.col label{
+    font-size: 40px;
+}
+.col select{
+    font-size:23px;
+    text-transform: lowercase;
+    padding: 1%;
+    border: 2px solid black;
+}
+#search{
+    width: 100%;
+    height: 100%;
+    position: relative;
+ 
+}
+.messages{
+    position: absolute;
+    top: 15%;
+    left:auto;
+    transform: translateY(-15%);
+    width: 100%;
+    background-color: coral;
+    width: 100%;
+    text-align: center;
+    height: 9vh;
+    display: none;
+    justify-content: space-between;
+    z-index: 3;
+
+}
+.mssg,.close{
+    display: flex;
+    align-items: center;
+
+    
+}
+
+.mssg{
+    justify-content: flex-end;
+    flex: 2;
+}
+.close h5{
+    cursor: pointer;
+    color: red;
+    font-size: 33px;
+}
+.close{
+
+    flex: 1;
+    font-size: 30px;
+    justify-content:center;
+
+}
+.messages p{
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: lowercase;
+}
+.search-container{
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    
+}
+.search-container h2{
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+.search-btn-container{
+    margin-top: 3%;
+    width: 200px;
+    height: 60px;
+    margin-bottom: 3%;
+}
+.search-btn-container .btn{
+    width: 100%;
+    height: 100%;
+    font-size: 33px;
+    border-radius: 15px;
+    color: #fff;
+    background-color: green;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+}
+
+.row{
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100px;
+    flex-wrap: wrap;
+}
+.des{
+    max-width: 200px;
+}
+
+/* ---------------Files section--------------------------- */
+.no-files{
+    font-size: 27px;
+    color: rgb(117, 111, 111);
+    padding:7% 0;
+    height: 28.3vh;
+}
+
+#files{
+    width: 100%;
+    height: 100%;
+}
+
+.files-container{
+    width: 90%;
+    margin: auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    
+    
+}
+.detail-link{
+  text-decoration: none;
+  color: #000;
+  width: 100%;
+}
+.card-container{
+    border: none;
+    border-radius: 15px;
+    background-image: linear-gradient(90deg,rgb(5, 172, 5),rgb(5, 143, 46));
+    box-shadow: 5px 6px 12px grey;
+    width: 80%;
+    height: 30vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 7%;
+    margin: 2% 2% ;
+    padding-top: 3%;
+}
+.card-body{
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    margin-bottom: 3%;
+    cursor: pointer;
+
+}
+a{
+    font-size: 33px;
+    list-style: none;
+    text-decoration: none;
+    
+}
+.card-body ul li{
+    font-size: 37px;
+    list-style: none;
+    text-decoration: none;
+}
+.card-body ul h3{
+    font-size: 43px;
+    color:rgb(0, 0, 0);
+    text-decoration: underline;
+}
+.card-download{
+    width: 100%;
+    height: 100%;
+    margin-top: 7%;
+   
+}
+.card-btn{
+    width: 100%;
+    padding: 20px 10px;
+    border-radius: 10px;
+    background-color: rgb(12, 4, 19);
+    color: #fff;
+
+
+}
+
+
+
+
+/* --------------------------------------------------------------- */
+
+
+@media screen and (max-width: 800px){
+    .row{
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+@media screen and (min-width:550px){
+    .card-container {
+
+        width: 50%;
+        height: auto;
+
+    }
+    .card-body ul h3 {
+        font-size: 2rem;
+    
+    }
+    .card-body ul li {
+        font-size: 1.5rem;
+        list-style: none;
+        text-decoration: none;
+    }
+    .card-download a {
+        font-size: 1.1rem;
+        list-style: none;
+        text-decoration: none;
+    }
+
+    
+    
+}
+@media screen and (min-width:999px){
+    .row-search {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-around;
+    }
+
+}

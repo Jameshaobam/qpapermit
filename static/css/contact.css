@@ -1,0 +1,24 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#contact-me{
+ width: 100%;
+ height: 100%;
+}
+.contact-hero{
+    width: 90%;
+    margin: auto;
+    height: 70vh;
+}
+.hero{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+.contact-info{
+    width: 100%;
+    height: 100%;
+    font-size:2.5rem;
+}

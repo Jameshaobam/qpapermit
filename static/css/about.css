@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#about{
+    width: 100%;
+    height: auto;
+}
+.about-hero{
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    line-height: 2;
+}
+.about-hero h3{
+    font-size: 3rem;
+}
+.about-info{
+    font-size: 2rem;
+}
+.instruction h1{
+ font-size: 2rem;
+}
+.instruction li{
+    list-style: disc;
+    font-size: 2rem;
+}

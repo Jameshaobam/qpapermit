@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Q{{post.id}}-Ans-{{ans.id}}-edit{% endblock %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/update-post.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section id="answers">
+<div class="update-container">
+    <h2>Update Answer details here</h2>
+    <form method="post" enctype="multipart/form-data" action="{% url 'home:update_ans' post.id ans.id %}">
+        {% csrf_token %}
+    <div class="row-update">
+        <div class="col">
+            <label for="">Description:</label>
+            <input class="des" type="text" name="context" required value="{{ans.context}}">
+        </div>
+        <div class="col">
+            <h3>Currently file = <a href="{{ans.image.url}}">URL</a></h3>
+            <p>You are required to choose the file (jpeg/png/pdf) to upload</p>
+            <br>
+            <input type="file" name="ans-file" required value="{{ans.image.url}}">
+        </div>
+        <div class="col btn-container">
+            <button class="btn" type="submit" name="upload">Upload</button>
+        </div>
+    </div>
+</div>
+
+</section>
+
+
+{% endblock %}

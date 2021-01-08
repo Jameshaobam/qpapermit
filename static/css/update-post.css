@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.row-update{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.col{
+    margin-top: 5%;
+}
+.col label{
+    font-size: 40px;
+}
+.col select{
+    font-size:33px;
+    text-transform: lowercase;
+    padding: 1%;
+    border: 2px solid black;
+}
+.col h3{
+    font-size: 33px;
+}
+.update-container h4{
+    font-size: 40px;
+    color: red;
+}
+.col p{
+    font-size: 30px;
+    color: red;
+    margin-bottom: 3px;
+}
+.col input[type='file']{
+    font-size: 35px;
+}
+#update{
+    width: 100%;
+    height: 100%;
+    position: relative;
+ 
+}
+.update-container{
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    
+}
+.update-container h2{
+    font-size: 50px;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+.btn-container{
+    margin-top: 7%;
+    width: 200px;
+    height: 60px;
+    margin-bottom: 7%;
+}
+.btn-container .btn{
+    width: 100%;
+    height: 100%;
+    font-size: 33px;
+    border-radius: 15px;
+    color: #fff;
+    background-color: green;
+    border: none;
+    outline: none;
+
+}
+
+
+/* ----------------------Answers update--------------------- */
+
+#answers,#upload{
+    height: 68.5vh;
+    width: 100%;
+
+}
+
+.col .des{
+    height: 50px;
+    border: 2px solid #000;
+    font-size: 40px;
+}
+

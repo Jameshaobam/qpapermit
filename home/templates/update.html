@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Info-{{to_update.id}}-edit{% endblock %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/update-post.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section id="update">
+    <div class="update-container">
+        <h2>Update here</h2>
+        <h4>If you don't want to change,you can go back</h4>
+        {% if request.user.id == to_update.owner.id %}
+        <form action="{% url 'home:update' to_update.id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row-update">
+            <div class="col">
+                <label for="">Trade</label>
+                <select class="" name="trade" required>
+                  <option selected="true" > {{to_update.trade}}</option>
+                      {% for key,value in trades.items %}
+                          <option value='{{key}}'>{{value}}</option>
+                    {% endfor %}
+            
+                </select>
+            </div>
+           <div class="col">
+            <label for="">Semester</label>
+            <select class="" name="sem" required>
+                <option selected="true"> {{to_update.semester}}</option>
+                  {% for key,value in sems.items %}
+                      <option value='{{key}}'>{{value}}</option>
+                {% endfor %}
+        
+            </select>
+           </div>
+           <div class="col">
+            <label for="">EXAM</label>
+            <select class="" name="exm" required>
+              <option selected="true" >{{to_update.exam}}</option>
+                {% for key,value in exm.items %}
+                    <option value='{{key}}'>{{value}}</option>
+              {% endfor %}
+        
+            </select>
+           </div>
+           
+           <div class="col">
+            <label>Year:</label>
+            <select name = "year_sec" required>
+                <option selected = "true" >{{to_update.year_of_exm}}</option>
+       
+                {% for i in yr %}
+                <option value="{{i.value}}">{{i.year}}</option>
+                {% endfor %}
+           </select>
+           </div>
+           <div class="col">
+            <label for="">Subject</label>
+            <select class="" name="sub_sec" required>
+                <option selected="true" > {{to_update.subject}}</option>
+                {% for key,value in subject.items %}
+                    <option value='{{key}}'>{{value}}</option>
+              {% endfor %}
+        
+            </select>
+           </div>
+           <div class="col">
+              <h3>
+                current file =<a href="{{to_update.file.url}}">URL</a> 
+              </h3> 
+           </div>
+            <div class="col">
+                <p>You are required to choose the file (jpeg/png/pdf) to upload</p>
+                <input type="file" name="up" required value="{{to_update.file.url}}">
+            </div>
+               
+           <div class="col btn-container">
+            <button class="btn" type="submit" name="upload">Upload</button>
+           </div>
+            
+          </form>
+        {% else %}
+        
+        <h1>You are not authorised to access this page</h1>
+        {% endif %}
+        </div>
+    
+    </div>
+
+</section>
+
+ 
+{% endblock %}

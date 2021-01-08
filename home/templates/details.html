@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% block meta %}
+<meta name="description" content="Details of {{detail.id}} and answers {{answers}}">
+<meta name="keywords" name="MIT previous year Questions and Answers">
+{% endblock %}
+{% load static %}
+{% block title %}Info-{{detail.id}}{% endblock %}
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/details.css' %}">
+{% endblock %}
+{% block search %}
+<!-- <a href="{% url 'home:home' %}">Back to home</a> -->
+{% endblock %}
+{% block content %}
+<main>
+    <div class="messages">
+        <!-- <h3>Message here</h3> -->
+        <div class="mssg">
+          {% if messages %}
+          <script>
+            const msg = document.querySelector('.messages');
+             msg.style.display = 'flex'
+          </script>
+           {% for messages in messages %}
+               <p>{{messages}}</p>
+           {% endfor %} 
+        {% endif %}
+        <div class="close">
+            <h5>&#10062</h5>
+          </div>
+          </div>
+          </div>
+
+<section id="img-container">
+    <div class="img-hero">
+
+        <img style = "font-size: 2rem;color:red;" src="{{detail.file.url}}" alt="You see this because this file is pdf" width="100%" height="100%">
+    </div>
+
+
+</section>
+
+<section id="information">
+    <div class="info-hero">
+        Trade: {{detail.trade}}
+        <br>
+        Year: {{detail.year_of_exm}}
+        <br>
+        Examination: {{detail.exam}}
+        <br>
+        Semester: {{detail.semester}}
+        <br>
+         <p>Subject: {{detail.subject}} </p>
+        <p>Shared by: {{detail.owner.username}} {% if request.user.id == detail.owner.id  %}(You){% else %} {% endif %}</p>
+        <p>on <small> {{detail.date_published}}</small></p>
+        <div class="link-container">
+            <a class="download" href="{{detail.file.url}}" target="_blank">Download the file</a>
+       
+            {% if request.user.id == detail.owner.id  %}
+<a class="edit" href="{% url 'home:update' detail.id %}">Edit</a>
+<form id="form" action="{% url 'home:delete' detail.id %}">
+    {% csrf_token %}
+    <button type="submit" class="delete" id="del-btn">delete</button>
+
+    <script>
+    const btn = document.querySelector("#del-btn");
+     btn.addEventListener("click",() => {
+    let ask_true = confirm("Are you sure?")
+    if(ask_true == true){
+      document.querySelector("#form").setAttribute("method","POST");
+    }
+    else{
+        document.querySelector("#form").setAttribute("method","GET");
+    }
+
+
+     });
+
+</script>
+
+</form>
+
+{% else %}
+{% endif %}
+        </div>
+        
+    </div>
+    
+</section>
+
+
+<hr>
+<br>
+
+<!-- --------------------- Answer section --------------------- -->
+
+<section id="answers">
+    <div class="ans-hero">
+        <div class="ans-title">
+            <h1>Answers to these Questions</h1>
+        </div>
+        <div class="ans-add">
+            <strong>Add answers for the above questions:</strong>
+            <form action="{% url 'home:postanswer' detail.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" autocomplete="off" name="context" placeholder="Add description" required>
+                <br>
+                <input type="file" name="ans-file" placeholder="file here" required>
+                <br>
+                <input value="Add" type="submit">
+            </form>
+        
+        </div>
+    </div>
+    <br>
+    <hr>
+   <div class="ans-area">
+
+    {% if answers %}
+    {% for ans in answers %}
+<br>
+      {{ans.context}}
+    <br>
+ <a href="{{ans.image.url}}" target="_blank">
+    <img src="{{ans.image.url}}" width="500px" height="500px" style="color: blue;" alt="Click here for upbove answers,Pdf file">
+    </a>
+    <br>
+    <div class="ans-owner">
+        <p>from-{{ans.owner.username}} ||<small> {{ans.date_published}}</small> </p>
+    </div>
+    
+{% if request.user.id == ans.owner.id %}
+<div class="ans-function">
+    <a href="{% url 'home:update_ans' detail.id ans.id %}">edit</a>
+    <form   action="{% url 'home:delete_ans' detail.id ans.id %}" id="ans-delete-form">
+        {% csrf_token %}
+        <input value="delete" id="ans-delete-btn" type="submit">
+        <script>
+            const ans_btn = document.querySelector("#ans-delete-btn");
+            ans_btn.addEventListener("click",() => {
+           let will_delete = confirm("Are you sure?")
+           if(will_delete == true){
+             document.querySelector("#ans-delete-form").setAttribute("method","POST");
+           }
+           else{
+               document.querySelector("#ans-delete-form").setAttribute("method","GET");
+           }
+       
+       
+            });
+        </script>
+    
+    </form>
+</div>
+<hr>
+
+{% else %}
+<hr>
+{% endif %}
+
+{% endfor %}
+{% else %}
+    <p>No answers yet for these questions</p>
+
+{% endif %}
+   </div>
+
+
+</section>
+
+
+
+
+
+</main>
+{% endblock %}
+
+
+
+

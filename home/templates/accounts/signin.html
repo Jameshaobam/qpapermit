@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Login
+{% endblock %}
+{% block style%}
+
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+{% endblock %}
+{% block content %}
+
+{% if  user.is_authenticated %}
+<p>You are Already login ! 😠😠😠</p>
+<a href="{% url 'home:home' %}">Go back to home</a>
+{% else %}
+
+
+
+<div class="form-container">
+<h3>Login</h3>
+  <form method="post" action="{% url 'account:signin_user' %}">
+    <div class="form-hero">
+      {% csrf_token %}
+         <div class="col">
+           <!-- <label for="">Email:</label> -->
+          <input type="email" required autocomplete="off" name="username"  placeholder="Email">
+         </div> 
+         <div class="col">
+        <!-- <label for="">Password:</label> -->
+        <input  type="password" autocomplete="off" name="password" required placeholder="Password">
+         <br>
+        
+      </div>  
+         <div class="col">
+           <p>Do you need an account? <a href="{% url 'account:signup_user' %}">Register here</a></p>
+         </div>
+         <div class="col btn-container">
+  
+          <button class="btn" type="submit">Login </button>
+        </div>
+
+        
+    </div>
+   
+
+</form>
+</div>
+
+
+
+
+<div class="msg">
+  {% if error %}
+
+  {{error}}
+
+{% endif %}
+
+{% if messages %}
+ {% for msg in messages %}
+  {{msg}}
+ {% endfor %}
+{% endif %}
+</div>
+
+
+<!-- ----------for authentication------------ -->
+{% endif %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+{% endblock %}
